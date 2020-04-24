@@ -3,9 +3,9 @@ import { NodeType, TagOpenNode } from './static/nodes';
 
 export { EventListeners, EventType, EventListenerFunctions, NodeType };
 
-const rStream = require('readable-stream');
-const stringDecoder = require('string_decoder');
-const Buffer = require('buffer');
+import rStream from 'readable-stream';
+import stringDecoder from 'string_decoder';
+import Buffer from 'buffer';
 
 /**
  * Parse a XML stream and emit events corresponding
@@ -15,7 +15,7 @@ const Buffer = require('buffer');
  *
  */
 export class Saxophone extends rStream.Writable {
-  private _decoder: typeof stringDecoder.StringDecoder;
+  private _decoder: stringDecoder.StringDecoder;
   private _tagStack: any[];
   private _waiting: { token: any; data: any } | null = null;
 
@@ -47,13 +47,13 @@ export class Saxophone extends rStream.Writable {
    * @param {string} encoding Encoding of the string, or 'buffer'.
    * @param {function} callback
    */
-  private _write(chunk: any, encoding: string, callback: (error?: Error | null) => void): void {
+  _write(chunk: any, encoding: string, callback: (error?: Error | null) => void): void {
     const data = encoding === 'buffer' ? this._decoder.write(chunk) : chunk;
     let error: any;
     try {
       this._parseChunk(data);
     } catch (err) {
-      error = err
+      error = err;
     } finally {
       callback(error);
     }
@@ -64,7 +64,7 @@ export class Saxophone extends rStream.Writable {
    *
    * @param {function} callback
    */
-  private _final(callback: (error?: Error) => void): void {
+  _final(callback: (error?: Error) => void): void {
     try {
       // Make sure all data has been extracted from the decoder
       this._parseChunk(this._decoder.end());
