@@ -22,8 +22,13 @@ export type EventType =
   | 'processingInstruction'
   | 'tagOpen'
   | 'tagClose'
+  //Stream.Writable events:
+  | 'close'
+  | 'drain'
+  | 'error'
   | 'finish'
-  | 'error';
+  | 'pipe'
+  | 'unpipe';
 
 export type EventTypeMap<E extends EventType> = E extends 'text'
   ? TextNode
