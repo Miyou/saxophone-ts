@@ -1,10 +1,10 @@
 {
   "name": "saxophone-ts",
   "description": "Fast and lightweight event-driven XML parser in pure JavaScript",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "license": "MIT",
-  "main": "dist/saxophone.umd.js",
-  "module": "dist/saxophone.es5.js",
+  "private": true,
+  "main": "dist/lib/src/index.js",
   "types": "dist/types/src/index.d.ts",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
   ],
   "scripts": {
     "benchmark": "node benchmark --unhandled-rejections=none",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "tsc --module commonjs && typedoc --out docs --target es6 --theme minimal --mode file src",
     "commit": "git-cz",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
