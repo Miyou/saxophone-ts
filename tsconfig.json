@@ -15,7 +15,7 @@
     ],
     "allowUmdGlobalAccess": false,
     "composite": true,
-    "strict": false,
+    "strict": true,
     "sourceMap": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,

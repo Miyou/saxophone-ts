@@ -2,6 +2,7 @@ import { uniq } from 'lodash';
 import { EventType, Saxophone } from './Saxophone';
 import { Readable } from 'readable-stream';
 import { stripIndent } from 'common-tags';
+import '@types/jest';
 
 /**
  * Verify that an XML text is parsed as the specified stream of events.
@@ -294,8 +295,8 @@ describe('Saxophone', () => {
     const events2: any[] = [];
     let finished2 = false;
 
-    ['text', 'cdata', 'comment', 'processingInstruction', 'tagOpen', 'tagClose'].forEach(
-      (eventName: EventType) => {
+    (['text', 'cdata', 'comment', 'processingInstruction', 'tagOpen', 'tagClose'] as const).forEach(
+      eventName => {
         parser1.on(eventName, async eventArgs => {
           events1.push([eventName, eventArgs]);
         });
