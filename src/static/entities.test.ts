@@ -1,4 +1,5 @@
 import { parseEntities } from './entities';
+import '@types/jest';
 
 describe('entities', () => {
   it('should normalize character entity references', () => {

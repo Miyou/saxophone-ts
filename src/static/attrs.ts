@@ -5,7 +5,8 @@
  * @param {string} character Character to check
  * @return {boolean} Whether the character is whitespace or not
  */
-export const isWhitespace = (character: string): boolean => character === ' ' || character === '\r' || character === '\n' || character === '\t';
+export const isWhitespace = (character: string): boolean =>
+  character === ' ' || character === '\r' || character === '\n' || character === '\t';
 
 /**
  * Parse a string of XML attributes to a map of attribute names
@@ -16,8 +17,8 @@ export const isWhitespace = (character: string): boolean => character === ' ' ||
  * @throws {Error} If the string is malformed
  * @return {Object} A map of attribute names to their values
  */
-export const parseAttrs = (input: string): object => {
-  const attrs: any = {};
+export const parseAttrs = (input: string): Record<string, string | undefined> => {
+  const attrs: Record<string, string | undefined> = {};
   const end = input.length;
   let position = 0;
 

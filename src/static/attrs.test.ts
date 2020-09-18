@@ -1,4 +1,5 @@
 import { parseAttrs } from './attrs';
+import '@types/jest';
 
 describe('attribute parser', () => {
   it('should parse tag attributes', () => {
@@ -14,11 +15,15 @@ describe('attribute parser', () => {
   });
 
   it('should not parse invalid attribute names', () => {
-    expect(parseAttrs.bind(null, ' this is an attribute="value"')).toThrowError('Attribute names may not contain whitespace');
+    expect(parseAttrs.bind(null, ' this is an attribute="value"')).toThrowError(
+      'Attribute names may not contain whitespace'
+    );
   });
 
   it('should not parse unquoted attribute values', () => {
-    expect(parseAttrs.bind(null, ' attribute=value value=invalid')).toThrowError('Attribute values should be quoted');
+    expect(parseAttrs.bind(null, ' attribute=value value=invalid')).toThrowError(
+      'Attribute values should be quoted'
+    );
   });
 
   it('should not parse misquoted attribute values', () => {
