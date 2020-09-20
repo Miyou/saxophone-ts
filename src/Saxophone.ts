@@ -48,15 +48,18 @@ export class Saxophone extends rStream.Writable {
    * @param {function} callback
    */
   _write(chunk: any, encoding: string, callback: (error?: Error | null) => void): void {
-    const data = encoding === 'buffer' ? this._decoder.write(chunk) : chunk;
-    let error: any;
-    try {
-      this._parseChunk(data);
-    } catch (err) {
-      error = err;
-    } finally {
-      callback(error);
-    }
+    //Process.nextTick so that we can attach the drain handler in Feedparser._write.
+    process.nextTick(() => {
+      const data = encoding === 'buffer' ? this._decoder.write(chunk) : chunk;
+      let error: any;
+      try {
+        this._parseChunk(data);
+      } catch (err) {
+        error = err;
+      } finally {
+        callback(error);
+      }
+    });
   }
 
   /**
